@@ -1,0 +1,41 @@
+%	Brief summary of using the dirtree package to visually represent a directory structure
+%	Written by Edward McCarthy
+
+%	Declare Document Class and options
+%	Dirtree will work with any document class
+\documentclass[12pt,a4paper]{article}
+
+%	Dirtree package
+%	This package enables you to graphically represent directory structure
+%	in your LaTeX document
+\usepackage{dirtree}
+
+%	Courier font
+%	This package loads the courier font to allow the dirtree package to
+%	use. Personally this looks better than the default font
+\usepackage{courier}
+
+
+%	Begin document
+\begin{document}
+
+%	Dirtree syntax
+%	This is the simple way to add directory structure to a document.
+%	To start using the dirtree comand you must start with "\dirtree{%"
+%	Leaving out the "%" will cause on error on build as the first character it looks for is a "."
+%	Syntax for declaring a file or directory is ".<level><space><text node>.<space>"
+\dirtree{%
+	.1 /.				%	The first line should always be declared as ".1 /." declaring the root
+	.2 Folder1.			%	Subsequent files/folders can start at level 1 or 2, to be within root it should be at level 2
+	.2 Folder2.
+	.3 Folder2\_File1.	%	As the level increases, the text node for that level will be within the previous level at the higher level eg. 2 is within 1, 3 is within 2, 4 is within 3
+	.3 Folder2\_File2.	%	Anything stated at the same level as the previous node will be shown at the same level as the previous node, not within it
+	.2 Folder3.			%	As this is LaTeX use of underscores must be properly escaped in the text part of each node
+	.3 Folder3\_Folder1.
+	.4 Folder3\_Folder1\_File1.
+	.3 Folder3\_File1.
+}
+%	To end the dirtree block simply close the brace
+	
+%	End of document
+\end{document}
